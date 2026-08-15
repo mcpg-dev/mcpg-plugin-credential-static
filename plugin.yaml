@@ -1,0 +1,22 @@
+schema: mcpg.dev/plugin/v1
+id: dev.mcpg.credential.static
+name: Static Credential Issuer
+license: Apache-2.0
+description: |
+  Config-driven credential_issuer plugin.
+  Operators declare per-target credentials in YAML; the plugin
+  returns them per-request keyed on the operator-supplied target
+  string. Supports both single-value (Bearer token style) and
+  multi-part (username + password style) credentials. Per-target
+  identity-mapping rules (static / role-allowlist / claim-template)
+  let operators authorise different identities to different
+  targets without external infrastructure. Pure offline; no
+  outbound network. Useful for dev / lab / partner integrations
+  + as the integration test foundation for the credential_issuer
+  trait surface. Production deployments needing dynamic Vault DB
+  credentials use the dev.mcpg.credential.vault-dynamic-db
+  plugin.
+class: credential_issuer
+runtime: native-cdylib-v1
+protocol_version: "1.0"
+required_capabilities: []
